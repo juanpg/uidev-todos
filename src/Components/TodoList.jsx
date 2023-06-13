@@ -15,6 +15,11 @@ export default function TodoList() {
     setTodos(newTodos)
   }
 
+  const handleDeleteTodo = (id) => {
+    const newTodos = todos.filter((todo) => todo.id !== id)
+    setTodos(newTodos)
+  }
+
   return (
     <ul>
       {todos.map((todo) => (
@@ -22,6 +27,7 @@ export default function TodoList() {
           key={todo.id}
           todo={todo}
           handleUpdateTodo={handleUpdateTodo}
+          handleDeleteTodo={handleDeleteTodo}
         />
       ))}
     </ul>

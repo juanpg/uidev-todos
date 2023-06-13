@@ -1,6 +1,6 @@
 import * as React from "react"
 
-export default function Todo ({todo, handleUpdateTodo}) {
+export default function Todo ({todo, handleUpdateTodo, handleDeleteTodo}) {
   const [editing, setEditing] = React.useState(false)
 
   const handleCheckboxClick = () => handleUpdateTodo({
@@ -12,6 +12,8 @@ export default function Todo ({todo, handleUpdateTodo}) {
     ...todo,
     label: e.target.value
   })
+
+  const handleDeleteClick = () => handleDeleteTodo(todo.id)
 
   return (
     <li>
@@ -39,6 +41,11 @@ export default function Todo ({todo, handleUpdateTodo}) {
       <button onClick={handleEditClick}>
         {editing ? 'Save' : 'Edit'}
       </button>
+      {!editing && (
+          <button onClick={handleDeleteClick}>
+            Delete
+          </button>
+        )}
     </li>
   )
 }
