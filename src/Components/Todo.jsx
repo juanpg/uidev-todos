@@ -7,23 +7,36 @@ export default function Todo () {
 
   const handleCheckboxClick = () => setCompleted(!completed);
   const handleEditClick = () => setEditing(!editing);
+  const handleUpdateLabel = (e) => setLabel(e.target.value)
 
   return (
-    <label htmlFor="checkbox">
-      <div>
-        <input 
-          type="checkbox" 
-          name="checkbox" 
-          id="checkbox" 
-          checked={completed}
-          onChange={handleCheckboxClick}
-        />
-        <span />
-      </div>
-      <span>{label}</span>
+    <div>
+      <label htmlFor="checkbox">
+        <div>
+          <input 
+            type="checkbox" 
+            name="checkbox" 
+            id="checkbox" 
+            checked={completed}
+            onChange={handleCheckboxClick}
+          />
+          <span />
+        </div>
+        {
+          editing === true ? (
+            <input
+              type='text'
+              value={label}
+              onChange={handleUpdateLabel}
+            />
+          ) : (
+            <span>{label}</span>
+          )
+        }
+      </label>
       <button onClick={handleEditClick}>
         {editing ? 'Save' : 'Edit'}
       </button>
-    </label>
+    </div>
   )
 }
