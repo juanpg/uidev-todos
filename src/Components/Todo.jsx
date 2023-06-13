@@ -15,12 +15,10 @@ export default function Todo ({todo, handleUpdateTodo}) {
 
   return (
     <li>
-      <label htmlFor="checkbox">
+      <label>
         <div>
           <input 
             type="checkbox" 
-            name="checkbox" 
-            id="checkbox" 
             checked={todo.completed}
             onChange={handleCheckboxClick}
           />
