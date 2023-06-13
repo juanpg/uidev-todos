@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Todo from './Todo'
+import TodoComposer from './TodoComposer'
 
 export default function TodoList() {
   const [todos, setTodos] = React.useState([
@@ -20,8 +21,14 @@ export default function TodoList() {
     setTodos(newTodos)
   }
 
+  const handleAddTodo = (newTodo) => {
+    const newTodos = [...todos, newTodo]
+    setTodos(newTodos)
+  }
+
   return (
     <ul>
+      <TodoComposer handleAddTodo={handleAddTodo} />
       {todos.map((todo) => (
         <Todo
           key={todo.id}
