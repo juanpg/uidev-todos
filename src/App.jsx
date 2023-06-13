@@ -1,11 +1,11 @@
-import Todo from "./Components/Todo"
+import TodoList from "./Components/TodoList"
 import './App.css'
 
 function App() {
   
   return (
     <>
-      <Todo />
+      <TodoList />
     </>
   )
 }

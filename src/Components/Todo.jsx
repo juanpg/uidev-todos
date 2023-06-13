@@ -1,23 +1,27 @@
 import * as React from "react"
 
-export default function Todo () {
-  const [label, setLabel] = React.useState('Learn React')
-  const [completed, setCompleted] = React.useState(false);
+export default function Todo ({todo, handleUpdateTodo}) {
   const [editing, setEditing] = React.useState(false)
 
-  const handleCheckboxClick = () => setCompleted(!completed);
+  const handleCheckboxClick = () => handleUpdateTodo({
+    ...todo,
+    completed: !todo.completed
+  });
   const handleEditClick = () => setEditing(!editing);
-  const handleUpdateLabel = (e) => setLabel(e.target.value)
+  const handleUpdateLabel = (e) => handleUpdateTodo({
+    ...todo,
+    label: e.target.value
+  })
 
   return (
-    <div>
+    <li>
       <label htmlFor="checkbox">
         <div>
           <input 
             type="checkbox" 
             name="checkbox" 
             id="checkbox" 
-            checked={completed}
+            checked={todo.completed}
             onChange={handleCheckboxClick}
           />
           <span />
@@ -26,17 +30,17 @@ export default function Todo () {
           editing === true ? (
             <input
               type='text'
-              value={label}
+              value={todo.label}
               onChange={handleUpdateLabel}
             />
           ) : (
-            <span>{label}</span>
+            <span>{todo.label}</span>
           )
         }
       </label>
       <button onClick={handleEditClick}>
         {editing ? 'Save' : 'Edit'}
       </button>
-    </div>
+    </li>
   )
 }
